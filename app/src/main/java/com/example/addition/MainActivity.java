@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -25,13 +26,26 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int n1 =  Integer.parseInt(num1.getText().toString());
-                int n2 =  Integer.parseInt(num2.getText().toString());
+                try {
+                    boolean check1 = num1.getText().toString().isEmpty();
+                    boolean check2 = num2.getText().toString().isEmpty();
+                    if (check1 || check2) {
+                    Toast.makeText(MainActivity.this,"Check to ensure that you have both values",Toast.LENGTH_LONG ).show();
 
-                int re = n1 + n2;
+                    } else {
+                        int n1 = Integer.parseInt(num1.getText().toString());
+                        int n2 = Integer.parseInt(num2.getText().toString());
 
-                result.setText("Result: "+re);
+                        int re = n1 + n2;
 
+
+                        result.setText("Result: " + re);
+                    }
+                }
+
+                catch (Exception e){
+                    Toast.makeText(MainActivity.this,"Something is wrong",Toast.LENGTH_LONG ).show();
+                }
             }
         });
 
